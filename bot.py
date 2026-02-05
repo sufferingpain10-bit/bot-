@@ -35,7 +35,7 @@ else:
 def get_daily_questions():
     today = date.today().isoformat()
     random.seed(today) 
-    selected = random.sample(all_questions, 15)  # 15 سؤال يوميًا مختلف كل يوم
+    selected = random.sample(all_questions, min(15, len(all_questions)))
     return selected
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -146,3 +146,4 @@ if __name__ == "__main__":
     keep_alive()
     # هنا يجب أن يكون كود تشغيل البوت الخاص بك بالأسفل، مثلاً:
     # bot.polling(none_stop=True)
+
