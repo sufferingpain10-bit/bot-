@@ -124,4 +124,25 @@ app.add_handler(CallbackQueryHandler(button))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_answers))
 
 print("البوت شغال الحين وفيه 5000+ سؤال يخبلون 🔥")
+
 app.run_polling()
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+if __name__ == "__main__":
+    keep_alive()
+    # هنا يجب أن يكون كود تشغيل البوت الخاص بك بالأسفل، مثلاً:
+    # bot.polling(none_stop=True)
